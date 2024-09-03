@@ -50,49 +50,76 @@
 
 ## Flowchart
 
+### 1. **User Authentication Flowchart**
 ```mermaid
 graph TD;
   Start[Start] --> Auth[User Authentication];
-  
   Auth --> |Admin| AdminDashboard[Admin Dashboard];
   Auth --> |Teacher| TeacherDashboard[Teacher Dashboard];
   Auth --> |Student| StudentDashboard[Student Dashboard];
   Auth --> |Parent| ParentDashboard[Parent Dashboard];
-  
-  AdminDashboard --> ManageUsers[Manage Users];
+```
+
+### 2. **Admin Dashboard Flowchart**
+```mermaid
+graph TD;
+  AdminDashboard[Admin Dashboard] --> ManageUsers[Manage Users];
   AdminDashboard --> ManageCourses[Manage Courses];
   AdminDashboard --> ViewReports[View Reports];
-  
-  TeacherDashboard --> Attendance[Mark Attendance];
-  Attendance --> NotifyAbsence[Notify Parents of Absence];
-  
+  AdminDashboard --> GenerateReports[Generate Reports];
+  AdminDashboard --> SendNotifications[Send Custom Notifications];
+  GenerateReports --> EndAdmin[End];
+  SendNotifications --> EndAdmin;
+```
+
+### 3. **Teacher Dashboard Flowchart**
+```mermaid
+graph TD;
+  TeacherDashboard[Teacher Dashboard] --> MarkAttendance[Mark Attendance];
+  MarkAttendance --> NotifyAbsence[Notify Parents of Absence];
+  NotifyAbsence --> EndTeacher[End];
   TeacherDashboard --> EnterMarks[Enter Unit Test Marks];
   EnterMarks --> CalcAverage[Calculate Average Marks];
   CalcAverage --> NotifyMarks[Notify Parents of Marks];
-  
-  StudentDashboard --> ViewAttendance[View Attendance];
+  NotifyMarks --> EndTeacher;
+```
+
+### 4. **Student Dashboard Flowchart**
+```mermaid
+graph TD;
+  StudentDashboard[Student Dashboard] --> ViewAttendance[View Attendance];
   StudentDashboard --> ViewMarks[View Marks];
   StudentDashboard --> ViewNotifications[View Notifications];
+  ViewAttendance --> EndStudent[End];
+  ViewMarks --> EndStudent;
+  ViewNotifications --> EndStudent;
+```
 
-  ParentDashboard --> ViewChildAttendance[View Child's Attendance];
+### 5. **Parent Dashboard Flowchart**
+```mermaid
+graph TD;
+  ParentDashboard[Parent Dashboard] --> ViewChildAttendance[View Child's Attendance];
   ParentDashboard --> ViewChildMarks[View Child's Marks];
   ParentDashboard --> ReceiveNotifications[Receive Notifications];
+  ViewChildAttendance --> EndParent[End];
+  ViewChildMarks --> EndParent;
+  ReceiveNotifications --> EndParent;
+```
 
+### 6. **Academic Calendar Integration Flowchart**
+```mermaid
+graph TD;
   AcademicCalendar[Academic Calendar Integration] --> AdminDashboard;
   AcademicCalendar --> TeacherDashboard;
   AcademicCalendar --> StudentDashboard;
-  
-  Reports[Generate Reports] --> AdminDashboard;
-  
-  Notifications[Send Custom Notifications] --> TeacherDashboard;
-  Notifications --> AdminDashboard;
-  
-  End[End] --> AdminDashboard;
-  End --> TeacherDashboard;
-  End --> StudentDashboard;
-  End --> ParentDashboard;
-
+  AdminDashboard --> EndCalendar[End];
+  TeacherDashboard --> EndCalendar;
+  StudentDashboard --> EndCalendar;
 ```
+
+### Conclusion
+
+By breaking the flowchart into these smaller sections, each part is more focused and readable. This approach also helps in understanding the roles and interactions of different user types in the system. You can combine these sub-flowcharts when presenting the complete system, but individually they provide a clearer picture.
 
 
 ### Conclusion
