@@ -119,9 +119,4 @@ graph TD;
 
 ### Conclusion
 
-By breaking the flowchart into these smaller sections, each part is more focused and readable. This approach also helps in understanding the roles and interactions of different user types in the system. You can combine these sub-flowcharts when presenting the complete system, but individually they provide a clearer picture.
-
-
-### Conclusion
-
 This scope gives a structured approach to building your department management system. It covers essential features like auto attendance, unit test marks management, and notifications while allowing room for future expansion. Start with the core functionalities and build incrementally to ensure a smooth development process.
