@@ -48,15 +48,50 @@
 
 
 
-## Mermaid
+## Flowchart
 
 ```mermaid
 graph TD;
-  Start-->Fun1;
-  Start-->Fun2;
-  Fun2-->End;
-  Fun1-->Fun3;
-  Fun3-->End;
+  Start[Start] --> Auth[User Authentication];
+  
+  Auth --> |Admin| AdminDashboard[Admin Dashboard];
+  Auth --> |Teacher| TeacherDashboard[Teacher Dashboard];
+  Auth --> |Student| StudentDashboard[Student Dashboard];
+  Auth --> |Parent| ParentDashboard[Parent Dashboard];
+  
+  AdminDashboard --> ManageUsers[Manage Users];
+  AdminDashboard --> ManageCourses[Manage Courses];
+  AdminDashboard --> ViewReports[View Reports];
+  
+  TeacherDashboard --> Attendance[Mark Attendance];
+  Attendance --> NotifyAbsence[Notify Parents of Absence];
+  
+  TeacherDashboard --> EnterMarks[Enter Unit Test Marks];
+  EnterMarks --> CalcAverage[Calculate Average Marks];
+  CalcAverage --> NotifyMarks[Notify Parents of Marks];
+  
+  StudentDashboard --> ViewAttendance[View Attendance];
+  StudentDashboard --> ViewMarks[View Marks];
+  StudentDashboard --> ViewNotifications[View Notifications];
+
+  ParentDashboard --> ViewChildAttendance[View Child's Attendance];
+  ParentDashboard --> ViewChildMarks[View Child's Marks];
+  ParentDashboard --> ReceiveNotifications[Receive Notifications];
+
+  AcademicCalendar[Academic Calendar Integration] --> AdminDashboard;
+  AcademicCalendar --> TeacherDashboard;
+  AcademicCalendar --> StudentDashboard;
+  
+  Reports[Generate Reports] --> AdminDashboard;
+  
+  Notifications[Send Custom Notifications] --> TeacherDashboard;
+  Notifications --> AdminDashboard;
+  
+  End[End] --> AdminDashboard;
+  End --> TeacherDashboard;
+  End --> StudentDashboard;
+  End --> ParentDashboard;
+
 ```
 
 
